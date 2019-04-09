@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>angularJsDemo</title>
+    <script src="angular.min.js"></script>
+    <script>
+
+        var app=angular.module("myApp",[]);
+
+        app.controller("mycontro",function($scope,$http){
+
+            $scope.findList=function(){
+
+                $http.get("data.json").success(function(response){
+
+                    $scope.list=response;
+
+                });
+
+
+            }
+
+        });
+
+
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="mycontro" ng-init="findList()">
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>SX</td>
+        <td>YW</td>
+    </tr>
+    <tr ng-repeat="x in list">
+        <td>{{x.Math}}</td>
+        <td>{{x.name}}</td>
+        <td>{{x.Language}}</td>
+    </tr>
+
+</table>
+</body>
+</html>
